@@ -7,11 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 @RestController
 @RequestMapping("/todo")
 public class TodoController {
 
+
+    Logger logger = LoggerFactory.getLogger(TodoController.class);
+ 
     @Autowired
     TodoService todoService;
 
@@ -23,6 +29,20 @@ public class TodoController {
     @GetMapping("/{id}")
     public Todo getTodo(@PathVariable("id") Long id) {
         return todoService.getById(id);
+    }
+
+
+    @GetMapping("/error/{id}")
+    public String getError(@PathVariable("id") String id) {
+       
+        try {
+            int a = Integer.parseInt(id);
+            return String.valueOf(a); 
+        } catch (Exception e) {
+            logger.info(e.toString());
+           
+        }
+        return "Success";
     }
 
     @PostMapping
