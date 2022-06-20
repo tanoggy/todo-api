@@ -39,7 +39,8 @@ public class TodoController {
             int a = Integer.parseInt(id);
             return String.valueOf(a); 
         } catch (Exception e) {
-            logger.info(e.toString());
+            logger.error(e.toString());
+            System.out.println(e.toString());
            
         }
         return "Success";
