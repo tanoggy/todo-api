@@ -40,10 +40,10 @@ public class TodoController {
             return String.valueOf(a); 
         } catch (Exception e) {
             logger.error(e.toString());
-            System.out.println(e.toString());
+            e.printStackTrace();
            
         }
-        return "Success";
+        return "Error number";
     }
 
     @PostMapping
